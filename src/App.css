@@ -1,11 +1,41 @@
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 
-.item-card {
+.App{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    height: auto;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffffff, #1a1a1a);
+    min-height: 100vh;
+
+}
+
+.order-details-container {
+    text-align: center;
+    color: white;
+    padding: 7px 10px 0px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: rgba(39, 36, 36, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+    width: 400px;
+    height: 340px;
+}
+
+.item-container {
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 34%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: rgba(91, 89, 89, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .item-button {
@@ -22,7 +52,37 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.78);
 }
 
+.item-button:hover {
+    transform: scale(1.05);
+}
+
 .item-button img {
     width: 50px;
     height: 50px;
+}
+
+.remove-btn{
+    border: none;
+    padding: 8px 2px;
+    background: url("https://img.icons8.com/color/35/cancel--v1.png") no-repeat center;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    transition: transform 0.2s ease;
+}
+
+.remove-btn:hover {
+    transform: scale(1.1);
+}
+
+.list-orders ul{
+    margin: 0;
+    padding: 0;
+}
+
+.list-orders li{
+    list-style: none;
+    margin: 5px 0;
+    padding: 0;
 }
