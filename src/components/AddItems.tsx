@@ -4,15 +4,19 @@ import {MenuItem} from '../types';
 
 interface AddItemsProps {
     menuItems: MenuItem[];
-    onAddItem: (item: MenuItem) => void; // Изменено на onAddItem
+    onAddItem: (item: MenuItem) => void;
 }
 
-const AddItems = ({menuItems, onAddItem}) => {
+const AddItems: React.FC<AddItemsProps> = ({menuItems, onAddItem}) => {
     return (
-        <div className= 'item-card'>
-            {menuItems.map((item) => (
-                <ItemCard key={item.name} item={item} onAddItem={onAddItem} />
-            ))}
+        <div className="item-container">
+            {menuItems.length > 0 ? (
+                menuItems.map((item) => (
+                    <ItemCard key={item.name} item={item} onAddItem={onAddItem}/>
+                ))
+            ) : (
+                <p>No items available.</p>
+            )}
         </div>
     );
 };

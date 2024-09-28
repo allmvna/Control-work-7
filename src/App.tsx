@@ -1,12 +1,14 @@
 import './App.css';
-import {MenuItem} from './types';
+import {MenuItem, OrderItem} from './types';
 import burgerImage from './assets/burger.png';
 import cheeseburgerImage from './assets/cheeseburger.png';
 import friesImage from './assets/fries.png';
 import coffeeImage from './assets/coffee.png';
 import teaImage from './assets/tea.png';
 import colaImage from './assets/cola.png';
-import AddItems from "./components/AddItems.tsx";
+import AddItems from './components/AddItems';
+import {useState} from 'react';
+import OrderDetails from './components/OrderDetails';
 
 
 const menuItems: MenuItem[] = [
@@ -18,15 +20,35 @@ const menuItems: MenuItem[] = [
     { name: 'Coca-Cola', price: 55, image: colaImage },
 ];
 
-console.log(menuItems);
-
 const App = () => {
 
-  return (
+    const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
+
+    const addItem = (item: MenuItem) => {
+        const foundItem = orderItems.find((currentItem) => currentItem.item.name === item.name);
+
+        if (foundItem) {
+            foundItem.quantity += 1;
+            setOrderItems([...orderItems]);
+        } else {
+            setOrderItems([...orderItems, { item, quantity: 1 }]);
+        }
+    };
+
+    const removeItem = (itemToRemove: OrderItem) => {
+        const updatedOrderItems = orderItems.filter((currentItem) => currentItem.item.name !== itemToRemove.item.name);
+        setOrderItems(updatedOrderItems);
+    };
+
+
+    return (
     <>
-      <div>
-          <AddItems menuItems={menuItems} />
-      </div>
+        <div className= 'App'>
+            <div className="order-panel">
+                <OrderDetails orderItems={orderItems} onRemoveItem={removeItem}/>
+            </div>
+                <AddItems menuItems={menuItems} onAddItem={addItem}/>
+        </div>
     </>
   )
 };
