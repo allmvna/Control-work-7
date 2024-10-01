@@ -3,3 +3,9 @@ export interface MenuItem {
     price: number;
     image: string;
 }
+
+
+export interface OrderItem {
+    item: MenuItem;
+    quantity: number;
+}
